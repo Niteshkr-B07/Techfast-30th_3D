@@ -1,8 +1,11 @@
 import { useMemo, useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
+import InteractiveObject from './InteractiveObject';
+import { SITE_CONTENT } from '../../data/event';
 
 const GOLD = '#d9ac4e';
+const GOLD_BRIGHT = '#f5dfa0';
 const GOLD_DARK = '#6b511f';
 const STONE = '#4a4438';
 const STONE_DARK = '#2b2721';
@@ -112,6 +115,34 @@ export default function Observatory() {
           <meshStandardMaterial color={GOLD} metalness={0.9} roughness={0.25} emissive={GOLD} emissiveIntensity={0.25} />
         </mesh>
       </group>
+
+      {/* Interactive historical artifacts on the platform rim */}
+      {SITE_CONTENT.about.history.map((item, i) => {
+        const a = (i / SITE_CONTENT.about.history.length) * Math.PI * 2 + Math.PI / 6;
+        return (
+          <InteractiveObject
+            key={item.title}
+            type="history"
+            id={String(i)}
+            tooltip={item.title}
+            position={[Math.cos(a) * 2.6, 1.3, Math.sin(a) * 2.6]}
+            hitRadius={0.55}
+          >
+            {(hovered, sel) => (
+              <mesh rotation={[0.3, 0.5, 0.1]}>
+                <dodecahedronGeometry args={[0.3, 0]} />
+                <meshStandardMaterial
+                  color={GOLD}
+                  emissive={hovered || sel ? GOLD_BRIGHT : GOLD}
+                  emissiveIntensity={hovered || sel ? 1.8 : 0.35}
+                  metalness={0.92}
+                  roughness={0.22}
+                />
+              </mesh>
+            )}
+          </InteractiveObject>
+        );
+      })}
     </group>
   );
 }

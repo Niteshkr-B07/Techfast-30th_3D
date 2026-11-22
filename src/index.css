@@ -35,6 +35,18 @@ body {
   border-radius: 3px;
 }
 
+@keyframes hotspot-float {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.85;
+  }
+  50% {
+    transform: translateY(-4px);
+    opacity: 1;
+  }
+}
+
 @layer components {
   .gold-text {
     @apply bg-clip-text text-transparent;
