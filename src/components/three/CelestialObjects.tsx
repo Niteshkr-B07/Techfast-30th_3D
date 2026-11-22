@@ -6,13 +6,12 @@ import * as THREE from 'three';
 const GOLD = '#d9ac4e';
 const CYAN_GLOW = '#3fd9ee';
 
-function Planet({ radius, color, emissive, distance, speed, incline, offset }: {
+function Planet({ radius, color, emissive, distance, speed, offset }: {
   radius: number;
   color: string;
   emissive: string;
   distance: number;
   speed: number;
-  incline: number;
   offset: number;
 }) {
   const ref = useRef<THREE.Group>(null);
@@ -69,9 +68,9 @@ export default function CelestialObjects() {
 
   return (
     <group>
-      <Planet radius={0.85} color="#c8b28a" emissive={GOLD} distance={11} speed={0.07} incline={0.3} offset={0} />
-      <Planet radius={0.5} color="#8fb8c9" emissive={CYAN_GLOW} distance={14} speed={-0.05} incline={0.5} offset={2.4} />
-      <Planet radius={0.32} color="#b7a37e" emissive={GOLD} distance={9} speed={0.11} incline={0.2} offset={4.6} />
+      <Planet radius={0.85} color="#c8b28a" emissive={GOLD} distance={11} speed={0.07} offset={0} />
+      <Planet radius={0.5} color="#8fb8c9" emissive={CYAN_GLOW} distance={14} speed={-0.05} offset={2.4} />
+      <Planet radius={0.32} color="#b7a37e" emissive={GOLD} distance={9} speed={0.11} offset={4.6} />
       {shards.map((s, i) => (
         <Shard key={i} position={s.position} size={s.size} />
       ))}
