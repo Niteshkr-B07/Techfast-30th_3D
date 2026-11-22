@@ -14,9 +14,10 @@ interface NavbarProps {
   activeSection: string;
   immersive: boolean;
   onToggleMode: () => void;
+  onNavigate: (id: string) => void;
 }
 
-export default function Navbar({ activeSection, immersive, onToggleMode }: NavbarProps) {
+export default function Navbar({ activeSection, immersive, onToggleMode, onNavigate }: NavbarProps) {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -28,7 +29,7 @@ export default function Navbar({ activeSection, immersive, onToggleMode }: Navba
 
   const goTo = (id: string) => {
     setOpen(false);
-    document.getElementById(`section-${id}`)?.scrollIntoView({ behavior: 'smooth' });
+    onNavigate(id);
   };
 
   return (

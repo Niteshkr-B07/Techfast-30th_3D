@@ -2,7 +2,12 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { SITE_CONTENT } from '../data/event';
 
-export default function Hero({ ready }: { ready: boolean }) {
+interface HeroProps {
+  ready: boolean;
+  onExplore: () => void;
+}
+
+export default function Hero({ ready, onExplore }: HeroProps) {
   const root = useRef<HTMLDivElement>(null);
   const c = SITE_CONTENT.hero;
 
@@ -48,7 +53,7 @@ export default function Hero({ ready }: { ready: boolean }) {
 
       <button
         data-hero
-        onClick={() => document.getElementById('section-about')?.scrollIntoView({ behavior: 'smooth' })}
+        onClick={onExplore}
         className="explore-btn mt-10 px-10 py-3.5 font-display text-xs tracking-[0.35em] text-gold-300"
       >
         EXPLORE

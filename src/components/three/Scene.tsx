@@ -5,7 +5,7 @@ import Holograms from './Holograms';
 import CelestialObjects from './CelestialObjects';
 import Particles from './Particles';
 import Lighting from './Lighting';
-import CameraRig from './CameraRig';
+import CameraController from './CameraController';
 import CompetitionArena from './CompetitionArena';
 import WorkshopLab from './WorkshopLab';
 import CampusEnvironment from './CampusEnvironment';
@@ -33,7 +33,7 @@ export default function Scene({ immersive, onSelect }: SceneProps) {
       <fog attach="fog" args={['#030409', 12, 36]} />
       <color attach="background" args={['#030409']} />
 
-      <CameraRig sway={immersive} />
+      <CameraController sway={immersive} animationSpeed={speed} />
       <Lighting immersive={immersive} />
 
       <Suspense fallback={null}>
