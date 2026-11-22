@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html {
+  scroll-behavior: initial;
+}
+
+html,
+body {
+  background: #030409;
+  color: #f5dfa0;
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+}
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+::selection {
+  background: rgba(217, 172, 78, 0.35);
+  color: #fff8e7;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #030409;
+}
+::-webkit-scrollbar-thumb {
+  background: #2a2415;
+  border-radius: 3px;
+}
+
+@layer components {
+  .gold-text {
+    @apply bg-clip-text text-transparent;
+    background-image: linear-gradient(135deg, #f5dfa0 0%, #d9ac4e 45%, #f8ecc4 70%, #b4842f 100%);
+  }
+
+  .glass-panel {
+    background: rgba(10, 14, 29, 0.45);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid rgba(217, 172, 78, 0.18);
+  }
+
+  .explore-btn {
+    position: relative;
+    overflow: hidden;
+    transition: box-shadow 0.5s ease, transform 0.4s ease;
+    box-shadow: 0 0 0 1px rgba(217, 172, 78, 0.5), 0 0 24px rgba(217, 172, 78, 0.15);
+  }
+  .explore-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0 0 1px rgba(245, 223, 160, 0.9), 0 0 48px rgba(217, 172, 78, 0.4);
+  }
+  .explore-btn::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(115deg, transparent 30%, rgba(255, 246, 220, 0.35) 50%, transparent 70%);
+    transform: translateX(-120%);
+    transition: transform 0.9s ease;
+  }
+  .explore-btn:hover::after {
+    transform: translateX(120%);
+  }
+}
